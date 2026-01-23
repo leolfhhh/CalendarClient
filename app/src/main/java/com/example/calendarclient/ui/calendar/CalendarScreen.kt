@@ -250,7 +250,14 @@ fun CalendarScreen(
                                 showSmartAddDialog = false
                                 onSmartAddResult(it)
                             },
-                            onError = { /* Handle error */ }
+                            onError = { errorMsg ->
+                                // Show error to user
+                                android.widget.Toast.makeText(
+                                    context,
+                                    "Error: $errorMsg",
+                                    android.widget.Toast.LENGTH_LONG
+                                ).show()
+                            }
                         )
                     },
                     enabled = query.isNotEmpty() && !isProcessingAI

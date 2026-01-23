@@ -1,5 +1,6 @@
 package com.example.calendarclient.api
 
+import android.util.Log
 import com.google.gson.annotations.SerializedName
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,9 +23,12 @@ interface AIAgentApi {
 }
 
 object AIAgentService {
-    private const val BASE_URL = "http://your-ai-backend-url.com/" // Placeholder
+    private const val BASE_URL = "http://10.0.2.2:8000/" // Using 10.0.2.2 to access host localhost from emulator
 
     val api: AIAgentApi by lazy {
+        // #region agent log
+        Log.d("DEBUG_AI", "[H3] Retrofit instance created | baseUrl=$BASE_URL | fullEndpoint=${BASE_URL}process")
+        // #endregion
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
